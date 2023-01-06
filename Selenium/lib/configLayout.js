@@ -11,6 +11,6 @@ const instanceConfig ={
 
 const testConfig ={
 	//Default value is Yes when left blank it is taken as no.
-headless: 'yes'
+headless: 'no'
 }
 module.exports = {userConfig,instanceConfig,testConfig};

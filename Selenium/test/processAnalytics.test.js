@@ -21,6 +21,7 @@ describe('QA test celonis', async function () {
     });
 
     it('T-1 Check if the analysis data is present.', async function () {
+
         await processAnalytics.navigateToProcessAnalyticsPage(driver);
         // assert the workflows are loaded
         await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> Pizza Demo");

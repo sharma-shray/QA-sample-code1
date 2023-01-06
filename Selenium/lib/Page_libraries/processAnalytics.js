@@ -1,4 +1,3 @@
-const {default: Symbols} = require('selenium-webdriver/lib/symbols');
 let webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     assert = require('assert')

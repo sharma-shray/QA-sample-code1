@@ -1,9 +1,9 @@
 let config = require("../lib/config");
-const {default: Symbols} = require('selenium-webdriver/lib/symbols');
 let webdriver = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
     By = webdriver.By,
     assert = require('assert');
+const {until} = require("selenium-webdriver");
 let options = new chrome.Options();
 let path = require('chromedriver').path;
 let service = new chrome.ServiceBuilder(path).build();
@@ -45,54 +45,13 @@ async function quit(driver) {
 //sub function for all action to wait before element appears
 async function waitForElement(driver, lookForEl, lookBy) {
     if ((lookBy.toString()).toLowerCase()=== "xpath") {
-        let counter = 0;
-        while (counter <= 10) {
-            try {
-                await driver.findElement(By.xpath(lookForEl))
-                counter=11;
-
-            } catch (exception) {
-                if (counter == 5) {
-                    throw new Error(exception);
-                } else {
-                    //console.log("element not found");
-                    await driver.sleep(1000);
-                    counter++;
-                }
-            }
-        }
+        await driver.wait(until.elementLocated(By.xpath(lookForEl)),10000);
     }
    else if ((lookBy.toString()).toLowerCase()==="classname") {
-        let counter = 0;
-        while (counter < 10) {
-            try {
-                await driver.findElement(By.className(lookForEl));
-                counter = 11;
-            } catch (exception) {
-                if (counter = 5) {
-                    throw new Error(exception);
-                } else {
-                    await driver.sleep(1000);
-                    counter++;
-                }
-            }
-        }
+        await driver.wait(until.elementLocated(By.className(lookForEl)),10000);
     }
    else if ((lookBy.toString()).toLowerCase()=== "id") {
-        let counter = 0;
-        while (counter < 10) {
-            try {
-                await driver.findElement(By.id(lookForEl));
-                counter = 11;
-            } catch (exception) {
-                if (counter = 5) {
-                    throw new Error(exception);
-                } else {
-                    await driver.sleep(1000);
-                    counter++;
-                }
-            }
-        }
+        await driver.wait(until.elementLocated(By.id(lookForEl)),10000);
     }
    else {
         throw new Error("Incorrect find by input for element wait.");

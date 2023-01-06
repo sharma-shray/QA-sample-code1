@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env-shell JEST_STARE_RESULT_DIR=results/test/integration_test jest",
+    "test": "cross-env-shell JEST_STARE_RESULT_DIR=results/test/suite_test jest",
     "selecttest": "cross-env-shell JEST_STARE_RESULT_DIR=results/test/singleRun/%npm_config_select% jest -t '%npm_config_select%'",
     "setheadlessvalue": "setHeadlessMode.sh %npm_config_headless% '%npm_config_headless%'",
     "setdependencies": "setCredentials.sh && setLatestChromeVersion.sh"
@@ -12,7 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "chromedriver": "105.0.0",
+    "chromedriver": "107.0.0",
     "jest": "^26.6.3",
     "jest-stare": "^2.2.2",
     "selenium-webdriver": "4.3.0",
