@@ -4,10 +4,10 @@ let webdriver = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
     By = webdriver.By,
     assert = require('assert');
+let options = new chrome.Options();
 let path = require('chromedriver').path;
 let service = new chrome.ServiceBuilder(path).build();
-//chrome.setDefaultService(service);
-let options = new chrome.Options();
+chrome.setDefaultService(service);
 
 jest.setTimeout(5000000);
 

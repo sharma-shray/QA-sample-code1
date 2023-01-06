@@ -1,6 +1,6 @@
 const userConfig = {
-	username: "sharma.shray92@gmail.com",
-	password: "P@ssw0rd1!"
+	username: "$user",
+	password: "$password"
 }
 //do not put instance URL with the last slash
 const instanceConfig ={
