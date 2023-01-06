@@ -7,6 +7,7 @@ Please set the username and password for your application as environment variabl
 
 "$password" for your password
 
+After setting the environment variables restart the IDE.
 Note: keep in mind that the environment variables are in small letters
 
 
