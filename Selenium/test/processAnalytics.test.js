@@ -20,7 +20,7 @@ describe('QA test celonis', async function () {
 
     });
 
-    it('T-1 Check if the analysis data is present.', async function () {
+    it('T-1 Check if the analysis data is present for pizza demo report', async function () {
 
         await processAnalytics.navigateToProcessAnalyticsPage(driver);
         // assert the workflows are loaded
@@ -30,8 +30,43 @@ describe('QA test celonis', async function () {
         await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> ServiceNow Ticketing");
         //asserting that the analysis reports are loaded and their count
         await processAnalytics.verifyAnalysisReports(driver,"--> Pizza Demo",187);
+
+    })
+    it('T-2 Check if the analysis data is present SAP ECC -order to cash', async function () {
+
+        await processAnalytics.navigateToProcessAnalyticsPage(driver);
+        // assert the workflows are loaded
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> Pizza Demo");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Order to Cash");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Purchase to Pay");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> ServiceNow Ticketing");
+        //asserting that the analysis reports are loaded and their count
         await processAnalytics.verifyAnalysisReports(driver,"--> SAP ECC - Order to Cash",297);
+
+
+    })
+    it('T-3 Check if the analysis data is present in SAP ECC - Purchase to Pay', async function () {
+
+        await processAnalytics.navigateToProcessAnalyticsPage(driver);
+        // assert the workflows are loaded
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> Pizza Demo");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Order to Cash");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Purchase to Pay");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> ServiceNow Ticketing");
+        //asserting that the analysis reports are loaded and their count
         await processAnalytics.verifyAnalysisReports(driver,"--> SAP ECC - Purchase to Pay ",309);
+
+
+    })
+    it('T-4 Check if the analysis data is present ServiceNow Ticketing', async function () {
+
+        await processAnalytics.navigateToProcessAnalyticsPage(driver);
+        // assert the workflows are loaded
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> Pizza Demo");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Order to Cash");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> SAP ECC - Purchase to Pay");
+        await processAnalytics.verifyWorkSpaceIsPresent(driver,"--> ServiceNow Ticketing");
+        //asserting that the analysis reports are loaded and their count
         await processAnalytics.verifyAnalysisReports(driver,"--> ServiceNow Ticketing",294);
 
     })

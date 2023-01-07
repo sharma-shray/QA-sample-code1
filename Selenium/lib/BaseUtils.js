@@ -137,6 +137,12 @@ async function lookForElement(driver, lookForEl, lookBy) {
     }
 }
 
+//wrapper function for back functionality.
+async function back(driver) {
+    await driver.navigate().back();
+    await this.waitForPageLoad(driver);
+}
+
 
 module.exports = {
     getDriver,
@@ -147,5 +153,6 @@ module.exports = {
     waitForPageLoad,
     click,
     lookForElement,
-    verifyCurrentUrl
+    verifyCurrentUrl,
+    back
 };
