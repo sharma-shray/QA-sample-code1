@@ -22,7 +22,7 @@ Note: keep in mind that the environment variables are in small letters
 
    * Set preferred headless mode: `npm run setheadlessvalue --headless=yes` OR `npm run setheadlessvalue --headless=no`
 3. Single test case run
-   * Start the execution: `npm run selecttest --select=T-1`  ( change the test case ID as per your requirements but there is only one test for now )
+   * Start the execution: `npm run selecttest --select=T-1`  ( change the test case ID as per your requirements )
 
   <h3>or</h3>
 3. Run whole suite
