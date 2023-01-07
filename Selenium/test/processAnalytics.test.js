@@ -4,7 +4,7 @@ let config = require("../lib/config");
 let processAnalytics = require("../lib/Page_libraries/processAnalytics");
 let driver;
 describe('QA test celonis', async function () {
-    jest.setTimeout(500000);
+    jest.setTimeout(90000);
 
     beforeAll(async function () {
         driver = await page.getDriver("chrome");
@@ -16,7 +16,7 @@ describe('QA test celonis', async function () {
 
     });
     afterAll(async function () {
-    await  driver.quit();
+    await driver.quit();
 
     });
 

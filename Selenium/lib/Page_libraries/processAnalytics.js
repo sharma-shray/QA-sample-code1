@@ -3,7 +3,7 @@ let webdriver = require('selenium-webdriver'),
     assert = require('assert')
 let page = require("../BaseUtils");
 
-jest.setTimeout(5000000);
+jest.setTimeout(90000);
 
 //navigation to process analytic page
 async function navigateToProcessAnalyticsPage(driver) {

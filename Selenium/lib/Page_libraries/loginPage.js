@@ -3,7 +3,7 @@ let config= require("../config");
 let webdriver = require('selenium-webdriver'),
     By = webdriver.By;
 const {until} = require("selenium-webdriver");
-    jest.setTimeout(5000000);
+    jest.setTimeout(90000);
 
 //navigation to the test instance and asserting for readiness
 async function login (driver) {

@@ -9,7 +9,7 @@ let path = require('chromedriver').path;
 let service = new chrome.ServiceBuilder(path).build();
 chrome.setDefaultService(service);
 
-jest.setTimeout(5000000);
+jest.setTimeout(90000);
 
 //to check the load status of the page by checking ready state
 async function waitForPageLoad(driver) {
@@ -32,74 +32,87 @@ async function getDriver(browser) {
     let driver = await new webdriver.Builder().setChromeOptions(options).forBrowser('chrome').build();
     await driver.manage().setTimeouts({implicit: (2000)});
     return driver;
-
 }
+
 //navigation wrapper
 async function navigateTo(driver, url) {
     await driver.get(url);
 }
+
 //quit wrapper
 async function quit(driver) {
     await driver.quit();
 }
+
 //sub function for all action to wait before element appears
 async function waitForElement(driver, lookForEl, lookBy) {
-    if ((lookBy.toString()).toLowerCase()=== "xpath") {
-        await driver.wait(until.elementLocated(By.xpath(lookForEl)),10000);
-    }
-   else if ((lookBy.toString()).toLowerCase()==="classname") {
-        await driver.wait(until.elementLocated(By.className(lookForEl)),10000);
-    }
-   else if ((lookBy.toString()).toLowerCase()=== "id") {
-        await driver.wait(until.elementLocated(By.id(lookForEl)),10000);
-    }
-   else {
-        throw new Error("Incorrect find by input for element wait.");
+    switch((lookBy.toString()).toLowerCase()){
+        case "xpath":
+            await driver.wait(until.elementLocated(By.xpath(lookForEl)),10000);
+            break;
+        case "classname":
+            await driver.wait(until.elementLocated(By.className(lookForEl)),10000);
+            break;
+        case "id":
+            await driver.wait(until.elementLocated(By.id(lookForEl)),10000);
+            break;
+        default :
+            throw new Error("Incorrect find by input for element wait.");
     }
 }
 
 //wrapper class for clicking which incorporates waiting for element
 async function click(driver, lookForEl, lookBy) {
     await this.waitForElement(driver, lookForEl, lookBy);
-    if (lookBy.toLowerCase() === "xpath") {
-        try {
 
-            await driver.findElement(By.xpath(lookForEl)).click();
-        } catch (exception) {
-            await console.log(exception);
-        }
-    }
-    if (lookBy.toLowerCase() === "classname") {
-        try {
+    switch((lookBy.toString()).toLowerCase()){
+        case "xpath":
+            try {
 
-            await driver.findElement(By.className(lookForEl)).click();
-        } catch (exception) {
-            await console.log(exception);
-        }
+                await driver.findElement(By.xpath(lookForEl)).click();
+            } catch (exception) {
+                await console.log(exception);
+            }
+            break;
+        case "classname":
+            try {
+                await driver.findElement(By.className(lookForEl)).click();
+            } catch (exception) {
+                await console.log(exception);
+            }
+            break;
+        case "id":
+            try {
+                await driver.findElement(By.id(lookForEl)).click();
+            } catch (exception) {
+                await console.log(exception);
+            }
+            break;
+        default :
+            throw new Error("Incorrect find by input for element click.");
     }
-    if (lookBy.toLowerCase() === "id") {
-        try {
-            await driver.findElement(By.id(lookForEl)).click();
-        } catch (exception) {
-            await console.log(exception);
-        }
-    }
+
 }
+
 //wrapper class for write which incorporates waiting for element
 async function write(driver, element, lookBy, value) {
     await this.waitForElement(driver, element, lookBy);
 
-    if (lookBy.toLowerCase() === "xpath") {
-        await driver.findElement(By.xpath(element)).sendKeys(value);
-    }
-    if (lookBy.toLowerCase() === "classname") {
-
-        await driver.findElement(By.className(element)).sendKeys(value);
-    }
-    if (lookBy.toLowerCase() === "id") {
-        await driver.findElement(By.id(element)).sendKeys(value);
+    switch((lookBy.toString()).toLowerCase()){
+        case "xpath":
+            await driver.findElement(By.xpath(element)).sendKeys(value);
+            break;
+        case "classname":
+            await driver.findElement(By.className(element)).sendKeys(value);
+            break;
+        case "id":
+            await driver.findElement(By.id(element)).sendKeys(value);
+            break;
+        default :
+            throw new Error("Incorrect find by input for element send keys.");
     }
 }
+
 //assertion for current url
 async function verifyCurrentUrl(driver,expectedUrl) {
     await driver.getCurrentUrl().then(function(result){assert(result===expectedUrl, result+ " is not the expected URL." )});
@@ -108,16 +121,20 @@ async function verifyCurrentUrl(driver,expectedUrl) {
 //assertion for element presence
 async function lookForElement(driver, lookForEl, lookBy) {
     await this.waitForElement(driver, lookForEl, lookBy)
-    if (lookBy.toLowerCase() === "xpath") {
-            await driver.findElement(By.xpath(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
-    } else if (lookBy.toLowerCase() === "classname") {
-        await driver.findElement(By.className(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
-    } else if (lookBy.toLowerCase() === "id") {
-        await driver.findElement(By.id(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
-    } else {
-        throw new Error("Invalid element search criteria '" + lookBy + "'");
-    }
 
+    switch((lookBy.toString()).toLowerCase()){
+        case "xpath":
+            await driver.findElement(By.xpath(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
+            break;
+        case "classname":
+            await driver.findElement(By.className(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
+            break;
+        case "id":
+            await driver.findElement(By.id(lookForEl)).then(function(result){assert(result!==null, lookForEl + " element was not found." )});
+            break;
+        default :
+            throw new Error("Invalid element search criteria '" + lookBy + "'");
+    }
 }
 
 
