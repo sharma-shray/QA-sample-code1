@@ -1,4 +1,4 @@
-<h1>&#128736; QA test Celenois readme &#128736;</h1>
+<h1>&#128736; QA test readme &#128736;</h1>
 
 <h2>One time setup:</h2>
 Please set the username and password for your application as environment variables
